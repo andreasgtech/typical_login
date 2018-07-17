@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<?php 
+	session_start();
+	if(empty($_SESSION['username'])) {
+		echo 'incorrect username/ password please try again.' ;
+	}
+?>
+<html>
+  <link rel="stylesheet" type="text/css" href="index.css" media="screen" />
+
+  <head>
+    <title>Barcodes</title>
+  </head>
+
+  <body>
+    <form action="login.php" method="post">
+     <div class="container_center">
+       <h1>Welcome to Barcodes!</h1>
+     </div>
+
+     <div class="container_center">
+       <label for="uname"><b>Username</b></label>
+       <input type="text" placeholder="Enter Username" name="uname" required>
+       <br>
+	   <?php
+			if(!empty($GLOBALS['usr_err'])) {
+				echo '<span style="color: red">Username not found.</span><br>';
+			}
+	   ?>
+       <label for="psw"><b>Password</b></label>
+       <input type="password" placeholder="Enter Password" name="psw" required>
+       <br>
+	   <?php
+			if(!empty($GLOBALS['pass_err'])) {
+				echo '<span style="color: red">Invalid password.</span><br>';
+			}
+	   ?>
+       <button type="submit" class="submitbtn">Login</button>
+       <br>
+       <label>
+         <input type="checkbox" checked="checked" name="remember"> Remember me
+       </label>
+     </div>
+
+     <div class="container_left" style="background-color:#f1f1f1">
+       <button type="button" class="cancelbtn">Cancel</button>
+       <span class="psw">Forgot <a href="#">password?</a></span>
+     </div>
+    </form>
+  </body>
+</html>
